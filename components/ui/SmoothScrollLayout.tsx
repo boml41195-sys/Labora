@@ -7,12 +7,19 @@ interface SmoothScrollLayoutProps {
 
 export const SmoothScrollLayout: React.FC<SmoothScrollLayoutProps> = ({ children }) => {
     useEffect(() => {
+        // Detect mobile (or small screens) roughly
+        const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
+
+        // If mobile, don't initialize Lenis to prefer native scroll performance
+        if (isMobile) return;
+
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
+            touchMultiplier: 2,
         });
 
         function raf(time: number) {
