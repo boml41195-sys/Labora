@@ -15,6 +15,7 @@ const MysteryTese = lazy(() => import('./components/MysteryTese').then(module =>
 const VibeCoding = lazy(() => import('./components/VibeCoding').then(module => ({ default: module.VibeCoding })));
 const ContactForm = lazy(() => import('./components/ContactForm').then(module => ({ default: module.ContactForm })));
 const TermsOfUse = lazy(() => import('./components/TermsOfUse').then(module => ({ default: module.TermsOfUse })));
+const SpeedInsightsComponent = lazy(() => import('./components/SpeedInsights').then(module => ({ default: module.SpeedInsightsComponent })));
 
 import { GlassNav } from './components/ui/GlassNav';
 import { SmoothScrollLayout } from './components/ui/SmoothScrollLayout';
@@ -113,6 +114,7 @@ const App: React.FC = () => {
 
         <Suspense fallback={null}>
           <TermsOfUse isOpen={showTerms} onClose={() => setShowTerms(false)} />
+          <SpeedInsightsComponent />
         </Suspense>
 
         <CookieConsent />
